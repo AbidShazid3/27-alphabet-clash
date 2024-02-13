@@ -24,10 +24,17 @@
             </div>
         </section>
         <!-- play ground start -->
-        <section class="play-ground">
-            <div>
+        <section class="play-ground hidden">
+            <div class="flex flex-col items-center gap-24 pt-24">
                 <!-- screen -->
-                <div class="artboard artboard-horizontal phone-6 border-[20px] rounded-2xl border-[#010313CC] bg-[#FFFFFFB2]">1024×320</div>
+                <div class="artboard artboard-horizontal phone-6 border-[20px] rounded-2xl border-[#010313CC] bg-[#FFFFFFB2]">
+                    <div class="flex justify-center">
+                        <p class="text-white bg-[#2F2941] text-lg font-medium rounded-b-xl px-5 pb-3">Don't watch keyboard  while playing...</p>
+                    </div>
+                    <div class="flex justify-center items-center h-full">
+                        <p class="text-black text-9xl font-semibold ">Y</p>
+                    </div>
+                </div>
                 <!-- keyboard start-->
                 <div>
                     <div class="flex justify-center gap-1 my-1 w-full">
@@ -66,6 +73,18 @@
                 </div>
                 <!-- keyboard end-->
                 <!-- life score -->
+                <div class="flex justify-between w-6/12">
+                    <button class="btn text-white bg-[#894189;] rounded-3xl">
+                        life
+                        <img src="images/heart.svg" alt="">
+                        <span>1</span>
+                      </button>
+                      <button class="btn text-white bg-[#360490] rounded-3xl">
+                        Score
+                        <img src="images/dollar.svg" alt="">
+                        <span>1</span>
+                      </button>
+                </div>
             </div>
         </section>
         <!-- play ground end -->
