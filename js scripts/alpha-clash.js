@@ -11,17 +11,22 @@
 
 function handleKeyboardKeyUpEvent(event){
     const playerPressed = event.key;
-    console.log('player press key:', playerPressed);
+    // console.log('player press key:', playerPressed);
+
+    // stop the game press esc
+    if(playerPressed === 'Escape'){
+        gameOver();
+    }
 
     // get the randomly key expected to press
     const cureentAlphabetElement = document.getElementById('cureent-alphabet');
     const cureentAlphabet = cureentAlphabetElement.innerText;
     const expectedAlphabet = cureentAlphabet.toLowerCase();
-    console.log(playerPressed, expectedAlphabet);
+    // console.log(playerPressed, expectedAlphabet);
 
     // check Alphabet matched or not
     if(playerPressed === expectedAlphabet){
-        console.log('you get a point');
+        // console.log('you get a point');
         const currentScore = getTextElementValueById('current-score');
         const newCurrentScore = currentScore + 1;
         setTextElementValueById('current-score', newCurrentScore);
@@ -41,10 +46,14 @@ function handleKeyboardKeyUpEvent(event){
         continueGame();
     }
     else{
-        console.log('you missed');
+        // console.log('you missed');
         const currentLife = getTextElementValueById('current-life');
         const newCurrentLife = currentLife - 1;
         setTextElementValueById('current-life', newCurrentLife);
+        if(newCurrentLife === 0){
+            gameOver();
+            // console.log('game over');
+        }
         // 1 get the current life number
         // const currentLifeElement = document.getElementById('current-life');
         // const currentLifeElementText = currentLifeElement.innerText;
@@ -62,7 +71,7 @@ document.addEventListener('keyup', handleKeyboardKeyUpEvent);
 function continueGame(){
     // step 1 generate a random alphabet
     const alphabet = getARandomAlphabet();
-    console.log(alphabet);
+    // console.log(alphabet);
     // set randomly generated alphabet to the screen
     const cureentAlphabetElement = document.getElementById('cureent-alphabet');
     cureentAlphabetElement.innerText = alphabet
@@ -74,5 +83,22 @@ function continueGame(){
 function playButton(){
     hideElementById('home-screen');
     showElementById('play-ground');
+    hideElementById('final-score');
+    // reset score and life
+    setTextElementValueById('current-life', 1);
+    setTextElementValueById('current-score', 0);
+
     continueGame();
+}
+
+function gameOver(){
+    hideElementById('play-ground');
+    showElementById('final-score');
+    // update final score
+    // 1. set last score
+    const lastScore = getTextElementValueById('current-score');
+    setTextElementValueById('last-score', lastScore);
+    // clear the last selected alphabet background color
+    const currentAlphabet = getElementTextById('cureent-alphabet');
+    removeBackgroundColorById(currentAlphabet);
 }
